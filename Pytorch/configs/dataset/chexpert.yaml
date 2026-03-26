@@ -1,0 +1,61 @@
+# ASU Research Cluster
+# CheXpert Dataset Configuration
+#
+# Dataset Statistics:
+# - Total Files (train/val/test): 187,273
+# - Full size: ~447 GB
+# - Scaled 1024x1024: ~83 GB
+# - Scaled 256x256: ~5.7 GB
+
+name: CheXpert
+
+# Define dataset root path (defaults to global dataset_dir, can be overridden individually via dataset.dataset_root=...)
+dataset_root: ${dataset_dir}
+
+train_image_root: "${dataset.dataset_root}/CheXpert/"
+val_image_root: "${dataset.dataset_root}/CheXpert/"
+test_image_root: "${dataset.dataset_root}/CheXpert/"
+  
+train_ann: data/chexpert/train.csv
+val_ann: data/chexpert/val.csv
+test_ann: data/chexpert/test.csv
+image_path_key: Path
+
+labels:
+  - No Finding
+  - Enlarged Cardiomediastinum
+  - Cardiomegaly
+  - Lung Opacity
+  - Lung Lesion
+  - Edema
+  - Consolidation
+  - Pneumonia
+  - Atelectasis
+  - Pneumothorax
+  - Pleural Effusion
+  - Pleural Other
+  - Fracture
+  - Support Devices
+num_classes: 14
+
+test_labels:
+  top5:
+    - Atelectasis
+    - Cardiomegaly
+    - Consolidation
+    - Edema
+    - Pleural Effusion
+  top12:
+    - Enlarged Cardiomediastinum
+    - Cardiomegaly
+    - Lung Opacity
+    - Lung Lesion
+    - Edema
+    - Consolidation
+    - Pneumonia
+    - Atelectasis
+    - Pneumothorax
+    - Pleural Effusion
+    - Pleural Other
+    - Fracture
+task_type: multi-label classification

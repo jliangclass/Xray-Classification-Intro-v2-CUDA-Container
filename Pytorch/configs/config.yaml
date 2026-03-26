@@ -1,0 +1,28 @@
+defaults:
+  - dataset: chestxray14
+  - model: resnet50
+  - train: default
+  - scheduler: reduce_lr_on_plateau
+  - override hydra/hydra_logging: none
+  - override hydra/job_logging: none
+  - _self_
+
+# Default dataset root directory. To override for all datasets simultaneously, pass `+dataset_dir=...` or `dataset_dir=...`
+dataset_dir: /scratch/sejong/class-dataset/cxr-256
+
+hydra:
+  run:
+    # dir: outputs/${dataset.name}
+    dir: output-cuda-${now:%Y%m%d}-${now:%H%M%S}
+  job:
+    chdir: true
+  output_subdir: ${run_name}/.hydra
+
+# run_name: use RUN_TIMESTAMP when set (e.g. from run_on_cuda.sh); do not use ${now:...} as default (differs per process and causes duplicate folders)
+run_name: ${dataset.name}_${model.backbone}_${train.optimizer}_${format_lr:${train.lr}}_${oc.env:RUN_TIMESTAMP,run}
+
+# Verbose logging (if False, minimizes standard output logs)
+verbose: true
+
+# Debug: run 1 training batch, then evaluation, then exit (override with --debug or debug=true)
+debug: false

@@ -1,0 +1,42 @@
+# ASU Research Cluster
+# NIH Chest XRAY 14 Dataset Configuration
+#
+# Dataset Statistics:
+# - Total Files (train/val/test): 112,123
+# - Full size: ~44 GB
+# - Scaled 1024x1024: ~42 GB
+# - Scaled 256x256: ~3.3 GB
+
+name: ChestXray14
+
+# Define dataset root path (defaults to global dataset_dir, can be overridden individually via dataset.dataset_root=...)
+dataset_root: ${dataset_dir}
+
+train_ann: data/xray14/train.csv
+val_ann: data/xray14/val.csv
+test_ann: data/xray14/test.csv
+
+# Supports list of paths for fallback
+train_image_root: "${dataset.dataset_root}/nih_xray14/images/images/"
+val_image_root: "${dataset.dataset_root}/nih_xray14/images/images/"
+test_image_root: "${dataset.dataset_root}/nih_xray14/images/images/"
+
+image_path_key: Path
+image_path_append: ""
+
+labels:
+  - Atelectasis
+  - Cardiomegaly
+  - Effusion
+  - Infiltration
+  - Mass
+  - Nodule
+  - Pneumonia
+  - Pneumothorax
+  - Consolidation
+  - Edema
+  - Emphysema
+  - Fibrosis
+  - Pleural_Thickening
+  - Hernia
+num_classes: 14
