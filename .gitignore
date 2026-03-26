@@ -3,7 +3,7 @@
 *.sif
 *.code-workspace
 *_logs/
-**/outputs/
+**/outputs*
 **/output/
 Pytorch/outputs/
 *nogit*
