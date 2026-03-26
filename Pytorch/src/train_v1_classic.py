@@ -642,8 +642,21 @@ def _train_impl(cfg: DictConfig, rank: int = 0, world_size: int = 1, local_rank:
                     best_metric = metric_value
                     best_epoch = eval_count
                     if rank == 0:
-                        torch.save(_state_dict_cpu(model), os.path.join(checkpoints_dir, "best_model.pt"))
-                        torch.save(_state_dict_cpu(model), os.path.join(checkpoints_dir, f"epoch_{epoch}.pt"))
+                        state = _state_dict_cpu(model)
+                        torch.save(
+                            state,
+                            os.path.join(
+                                checkpoints_dir,
+                                f"best_model_{epoch:03d}_{global_iter:06d}.pt",
+                            ),
+                        )
+                        torch.save(
+                            state,
+                            os.path.join(
+                                checkpoints_dir,
+                                f"model_{epoch:03d}_{global_iter:06d}.pt",
+                            ),
+                        )
                     logger.info(f"New best {monitor_name}: {best_metric:.4f} (iter {global_iter})")
                     logger.info(f"Saved model for iteration {global_iter} because it improved")
                 else:

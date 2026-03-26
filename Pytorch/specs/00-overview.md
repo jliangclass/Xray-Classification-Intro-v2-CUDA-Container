@@ -17,7 +17,7 @@ Provide a minimal, PyTorch training pipeline for multi-label chest X-ray classif
 ## Inputs/Outputs
 - Inputs: CSVs and image folders
 - Outputs: All files are saved under `outputs/{dataset_name}/{run_name}/` directory:
-  - Model checkpoints: `outputs/{dataset_name}/{run_name}/checkpoints/best_model.pt` and `outputs/{dataset_name}/{run_name}/checkpoints/last_model.pt` (state_dict only, `.pt` format)
+  - Model checkpoints: `outputs/{dataset_name}/{run_name}/checkpoints/best_model_{epoch:03d}_{iter:06d}.pt` and `outputs/{dataset_name}/{run_name}/checkpoints/model_{epoch:03d}_{iter:06d}.pt` (state_dict only, `.pt` format); `last_model.pt` if saved at end of training
   - Prediction CSVs: `outputs/{dataset_name}/{run_name}/val/preds_epochXXX_iterYYYYYY.csv` and `outputs/{dataset_name}/{run_name}/test/preds_epochXXX_iterYYYYYY.csv` (predictions only, no ground truth)
   - Training log: `outputs/{dataset_name}/{run_name}/training.log`
 

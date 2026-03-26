@@ -15,7 +15,8 @@
 ## Files (all under `outputs/{dataset_name}/{run_name}/`)
 - `training.log` - training log file (contains all INFO level logs from training)
 - `.hydra/` - Hydra configuration snapshot directory (contains config.yaml and other Hydra files)
-- `checkpoints/best_model.pt` - saved when metric improves (state_dict only, .pt format)
+- `checkpoints/best_model_{epoch:03d}_{iter:06d}.pt` - saved when metric improves (epoch 3-digit zero-padded, global iter 6-digit zero-padded; state_dict only, .pt format)
+- `checkpoints/model_{epoch:03d}_{iter:06d}.pt` - saved alongside each best checkpoint (same padding; state_dict only, .pt format)
 - `checkpoints/last_model.pt` - saved at end of training (state_dict only, .pt format)
 - `auroc_list_mean.csv` - Mean and subset AUROC metrics tracked per evaluation step
 - `auroc_list_per_label.csv` - Per-label AUROC metrics tracked per evaluation step
@@ -29,10 +30,10 @@
   - `__key__`: original `__key__` column value from dataset CSV (if present)
 
 ## Complete file paths
-## Complete file paths
 All files are located under the `{run_name}` directory:
 - `outputs/{dataset_name}/{run_name}/training.log`
-- `outputs/{dataset_name}/{run_name}/checkpoints/best_model.pt`
+- `outputs/{dataset_name}/{run_name}/checkpoints/best_model_{epoch:03d}_{iter:06d}.pt`
+- `outputs/{dataset_name}/{run_name}/checkpoints/model_{epoch:03d}_{iter:06d}.pt`
 - `outputs/{dataset_name}/{run_name}/checkpoints/last_model.pt`
 - `outputs/{dataset_name}/{run_name}/auroc_list_mean.csv`
 - `outputs/{dataset_name}/{run_name}/auroc_list_per_label.csv`

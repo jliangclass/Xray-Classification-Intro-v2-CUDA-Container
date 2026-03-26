@@ -17,7 +17,7 @@
 - Log format includes: rank, dataset name, optimizer, epoch, global step, batch index, batch timing, data timing, learning rates, loss, elapsed time, ETA.
 - All INFO level logs are saved to `training.log` file under `outputs/{dataset_name}/{run_name}/` directory.
 - Save `checkpoints/last_model.pt` at end of training under `outputs/{dataset_name}/{run_name}/checkpoints/` directory.
-- Save `checkpoints/best_model.pt` when monitored metric improves under `outputs/{dataset_name}/{run_name}/checkpoints/` directory.
+- Save `checkpoints/best_model_{epoch:03d}_{iter:06d}.pt` and `checkpoints/model_{epoch:03d}_{iter:06d}.pt` when monitored metric improves (3-digit epoch, 6-digit global iteration, zero-padded) under `outputs/{dataset_name}/{run_name}/checkpoints/` directory.
 
 ## Evaluation Augmentation Rules
 - Train transform: Resize to `image_size`, Random Rotation (7 deg), ToTensor. (No horizontal flip).
