@@ -179,4 +179,4 @@ huggingface/
 .transformers_cache/
 
 !.gitignore
-!**/plots-example/*.png
+!**/plots-example/**/*.png
